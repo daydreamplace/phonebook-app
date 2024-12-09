@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.rowHeight = 80
         tableView.backgroundColor = .white
         return tableView
     }()
@@ -36,7 +37,16 @@ class MainViewController: UIViewController {
     private let dummyData: [(name: String, phone: String)] = [
         ("eden", "010-1234-5678"),
         ("brie", "010-9876-5432"),
-        ("eric", "010-4567-1234")
+        ("eric", "010-4567-1234"),
+        ("emily", "010-1111-1111"),
+        ("eden", "010-1234-5678"),
+        ("brie", "010-9876-5432"),
+        ("eric", "010-4567-1234"),
+        ("emily", "010-1111-1111"),
+        ("eden", "010-1234-5678"),
+        ("brie", "010-9876-5432"),
+        ("eric", "010-4567-1234"),
+        ("emily", "010-1111-1111")
     ]
     
     // MARK: - Life Cycle

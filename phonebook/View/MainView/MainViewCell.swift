@@ -62,15 +62,13 @@ class TableViewCell: UITableViewCell {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
             make.leading.equalTo(profileImageView.snp.trailing).offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.centerY.equalToSuperview()
         }
         
         phoneLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(4)
-            make.leading.equalTo(nameLabel)
-            make.trailing.equalTo(nameLabel)
+            make.trailing.equalToSuperview().offset(-16)
+            make.centerY.equalToSuperview()
         }
     }
     

@@ -84,8 +84,8 @@ class MainViewController: UIViewController {
     // MARK: - Actions
     @objc
     private func addButtonTapped() {
-        // TODO: Implement navigation to add
-        print("Tapped")
+        let addContactVC = PhoneBookViewController()
+        navigationController?.pushViewController(addContactVC, animated: true)
     }
 }
 

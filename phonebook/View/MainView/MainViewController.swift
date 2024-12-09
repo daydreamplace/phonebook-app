@@ -27,6 +27,12 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .white
+        return tableView
+    }()
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +44,8 @@ class MainViewController: UIViewController {
     private func setupUI() {
         view.addSubview(titleLabel)
         view.addSubview(addButton)
+        view.addSubview(tableView)
+
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
@@ -47,6 +55,11 @@ class MainViewController: UIViewController {
         addButton.snp.makeConstraints { make in
             make.centerY.equalTo(titleLabel)
             make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     

@@ -22,6 +22,21 @@ class TableViewCell: UITableViewCell {
         return imageView
     }()
     
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let phoneLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .gray
+        return label
+    }()
+    
+    
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,6 +50,8 @@ class TableViewCell: UITableViewCell {
     // MARK: - Setup Methods
     private func setupUI() {
         contentView.addSubview(profileImageView)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(phoneLabel)
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(50)
@@ -42,5 +59,16 @@ class TableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
         
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        phoneLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(4)
+            make.leading.equalTo(nameLabel)
+            make.trailing.equalTo(nameLabel)
+        }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainViewController: UIViewController {
     private let titleLabel: UILabel = {
@@ -19,5 +20,15 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setupUI()
+    }
+    
+    private func setupUI() {
+        view.addSubview(titleLabel)
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
+            make.centerX.equalToSuperview()
+        }
     }
 }

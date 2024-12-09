@@ -11,6 +11,8 @@ import SnapKit
 import UIKit
 
 class TableViewCell: UITableViewCell {
+    static let identifier = "TableViewCell"
+    
     // MARK: - UI Components
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -70,5 +72,10 @@ class TableViewCell: UITableViewCell {
             make.leading.equalTo(nameLabel)
             make.trailing.equalTo(nameLabel)
         }
+    }
+    
+    func configure(name: String, phone: String) {
+        nameLabel.text = name
+        phoneLabel.text = phone
     }
 }

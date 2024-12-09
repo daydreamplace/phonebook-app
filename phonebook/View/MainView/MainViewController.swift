@@ -33,11 +33,19 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
+    private let dummyData: [(name: String, phone: String)] = [
+        ("eden", "010-1234-5678"),
+        ("brie", "010-9876-5432"),
+        ("eric", "010-4567-1234")
+    ]
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
+        tableView.dataSource = self
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
     }
     
     // MARK: - Setup Methods
@@ -45,7 +53,7 @@ class MainViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(addButton)
         view.addSubview(tableView)
-
+        
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
@@ -68,5 +76,21 @@ class MainViewController: UIViewController {
     private func addButtonTapped() {
         // TODO: Implement navigation to add
         print("Tapped")
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dummyData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
+            return UITableViewCell()
+        }
+        let data = dummyData[indexPath.row]
+        cell.configure(name: data.name, phone: data.phone)
+        return cell
     }
 }

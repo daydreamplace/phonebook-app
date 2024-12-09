@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
+    // MARK: - UI Components
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "친구 목록"
@@ -22,15 +23,18 @@ class MainViewController: UIViewController {
         button.setTitle("추가", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
     }
     
+    // MARK: - Setup Methods
     private func setupUI() {
         view.addSubview(titleLabel)
         view.addSubview(addButton)
@@ -44,5 +48,12 @@ class MainViewController: UIViewController {
             make.centerY.equalTo(titleLabel)
             make.trailing.equalToSuperview().offset(-16)
         }
+    }
+    
+    // MARK: - Actions
+    @objc
+    private func addButtonTapped() {
+        // TODO: Implement navigation to add
+        print("Tapped")
     }
 }

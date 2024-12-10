@@ -52,8 +52,8 @@ class PhoneBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "연락처 추가"
         setupUI()
+        setupNavigationBar()
     }
     
     // MARK: - Setup Methods
@@ -86,4 +86,17 @@ class PhoneBookViewController: UIViewController {
             make.height.equalTo(40)
         }
     }
+    
+    private func setupNavigationBar() {
+        title = "연락처 추가"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "저장", style: .done, target: self, action: #selector(saveButtonTapped))
+    }
+    
+    @objc
+    private func saveButtonTapped() {
+        print("save!!")
+        // TODO : save function
+    }
 }
+

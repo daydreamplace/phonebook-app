@@ -29,7 +29,7 @@ class PhoneBookViewController: UIViewController {
     private func setupNavigationBar() {
         title = "연락처 추가"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "저장", style: .done, target: self, action: #selector(saveButtonTapped))
+            title: "적용", style: .done, target: self, action: #selector(saveButtonTapped))
     }
     
     private func setupActions() {

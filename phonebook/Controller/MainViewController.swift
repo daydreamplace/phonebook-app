@@ -28,6 +28,10 @@ class MainViewController: UIViewController {
     ]
     
     // MARK: - Life Cycle
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

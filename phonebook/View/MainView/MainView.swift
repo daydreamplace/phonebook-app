@@ -23,7 +23,6 @@ class MainView: UIView {
         button.setTitle("추가", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         button.setTitleColor(.gray, for: .normal)
-        //        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
     

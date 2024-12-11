@@ -1,16 +1,16 @@
 //
-//  PhoneBookViewController.swift
+//  PhoneBookView.swift
 //  phonebook
 //
-//  Created by eden on 12/9/24.
+//  Created by eden on 12/11/24.
 //
 
 import UIKit
 import SnapKit
 
-class PhoneBookViewController: UIViewController {
+class PhoneBookView: UIView {
     // MARK: - UI Components
-    private let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 80
         imageView.layer.borderWidth = 1
@@ -20,7 +20,7 @@ class PhoneBookViewController: UIViewController {
         return imageView
     }()
     
-    private let randomImageButton: UIButton = {
+    let randomImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("랜덤 이미지 생성", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -28,7 +28,7 @@ class PhoneBookViewController: UIViewController {
         return button
     }()
     
-    private let nameTextView: UITextView = {
+    let nameTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.layer.borderWidth = 1
@@ -38,7 +38,7 @@ class PhoneBookViewController: UIViewController {
         return textView
     }()
     
-    private let phoneTextView: UITextView = {
+    let phoneTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.layer.borderWidth = 1
@@ -48,23 +48,25 @@ class PhoneBookViewController: UIViewController {
         return textView
     }()
     
-    // MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
+    // MARK: - Initializer
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
-        setupNavigationBar()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Setup Methods
     private func setupUI() {
-        view.addSubview(profileImageView)
-        view.addSubview(randomImageButton)
-        view.addSubview(nameTextView)
-        view.addSubview(phoneTextView)
+        self.addSubview(profileImageView)
+        self.addSubview(randomImageButton)
+        self.addSubview(nameTextView)
+        self.addSubview(phoneTextView)
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(16)
             make.centerX.equalToSuperview()
             make.size.equalTo(160)
         }
@@ -87,16 +89,5 @@ class PhoneBookViewController: UIViewController {
         }
     }
     
-    private func setupNavigationBar() {
-        title = "연락처 추가"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "저장", style: .done, target: self, action: #selector(saveButtonTapped))
-    }
     
-    @objc
-    private func saveButtonTapped() {
-        print("save!!")
-        // TODO : save function
-    }
 }
-

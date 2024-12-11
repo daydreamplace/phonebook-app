@@ -22,7 +22,7 @@ class PhoneBookViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavigationBar()
-        phoneBookView.randomImageButton.addTarget(self, action: #selector(randomImageButtonTapped), for: .touchUpInside)
+        setupActions()
     }
     
     // MARK: - Setup Methods
@@ -30,6 +30,10 @@ class PhoneBookViewController: UIViewController {
         title = "연락처 추가"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "저장", style: .done, target: self, action: #selector(saveButtonTapped))
+    }
+    
+    private func setupActions() {
+        phoneBookView.randomImageButton.addTarget(self, action: #selector(randomImageButtonTapped), for: .touchUpInside)
     }
     
     @objc
@@ -43,23 +47,26 @@ class PhoneBookViewController: UIViewController {
         fetchRandomImage()
     }
     
+    // MARK: - Networking Methods
     private func fetchRandomImage() {
         guard let randomNumber = (1...1000).randomElement(),
               let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNumber)") else { return }
         
         networkManager.fetchData(url: url) { [weak self] (result: Pokemon?) in
             guard let self, let result else { return }
-            print(result)
             
-            guard let pokemonImageUrl = result.sprites.frontDefault else { return }
-            
-            guard let imageUrl = URL(string: pokemonImageUrl) else { return }
-            
-            if let data = try? Data(contentsOf: imageUrl) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.phoneBookView.profileImageView.image = image
-                    }
+            self.loadRandomImage(from: result)
+        }
+    }
+    
+    private func loadRandomImage(from pokemon: Pokemon) {
+        guard let pokemonImageUrl = pokemon.sprites.frontDefault,
+              let imageUrl = URL(string: pokemonImageUrl) else { return }
+        
+        if let data = try? Data(contentsOf: imageUrl) {
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.phoneBookView.profileImageView.image = image
                 }
             }
         }

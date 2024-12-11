@@ -11,6 +11,7 @@ import SnapKit
 class PhoneBookViewController: UIViewController {
     // MARK: - UI Components
     let phoneBookView = PhoneBookView()
+    let networkManager = NetworkManager()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -39,17 +40,14 @@ class PhoneBookViewController: UIViewController {
     
     @objc
     private func randomImageButtonTapped() {
-        print("random")
-        // TODO : random image function
         fetchRandomImage()
     }
     
     private func fetchRandomImage() {
-        let b = NetworkManager()
         guard let randomNumber = (1...1000).randomElement() else { return }
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNumber)") else { return }
         
-        b.fetchData(url: url) { [weak self] (result: Pokemon?) in
+        networkManager.fetchData(url: url) { [weak self] (result: Pokemon?) in
             guard let self, let result else { return }
             print(result)
             

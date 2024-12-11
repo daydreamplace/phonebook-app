@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class PhoneBookViewController: UIViewController {
+    // MARK: - UI Components
     let phoneBookView = PhoneBookView()
     
     // MARK: - Life Cycle
@@ -41,5 +42,6 @@ class PhoneBookViewController: UIViewController {
         print("random")
         // TODO : random image function
     }
+
 }
 

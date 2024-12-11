@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         mainView.tableView.dataSource = self
+        mainView.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         mainView.tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
     }
     

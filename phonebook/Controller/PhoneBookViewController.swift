@@ -41,7 +41,30 @@ class PhoneBookViewController: UIViewController {
     private func randomImageButtonTapped() {
         print("random")
         // TODO : random image function
+        fetchRandomImage()
     }
-
+    
+    private func fetchRandomImage() {
+        let b = NetworkManager()
+        guard let randomNumber = (1...1000).randomElement() else { return }
+        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNumber)") else { return }
+        
+        b.fetchData(url: url) { [weak self] (result: Pokemon?) in
+            guard let self, let result else { return }
+            print(result)
+            
+            guard let pokemonImageUrl = result.sprites.frontDefault else { return }
+            
+            guard let imageUrl = URL(string: pokemonImageUrl) else { return }
+            
+            if let data = try? Data(contentsOf: imageUrl) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.phoneBookView.profileImageView.image = image
+                    }
+                }
+            }
+        }
+    }
 }
 

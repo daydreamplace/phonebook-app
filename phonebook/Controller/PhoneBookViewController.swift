@@ -44,8 +44,8 @@ class PhoneBookViewController: UIViewController {
     }
     
     private func fetchRandomImage() {
-        guard let randomNumber = (1...1000).randomElement() else { return }
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNumber)") else { return }
+        guard let randomNumber = (1...1000).randomElement(),
+              let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNumber)") else { return }
         
         networkManager.fetchData(url: url) { [weak self] (result: Pokemon?) in
             guard let self, let result else { return }

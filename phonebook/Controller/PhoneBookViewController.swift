@@ -38,8 +38,14 @@ class PhoneBookViewController: UIViewController {
     
     @objc
     private func saveButtonTapped() {
-        print("save!!")
-        // TODO : save function
+        guard let name = phoneBookView.nameTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+              let phone = phoneBookView.phoneTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+            print("이름 전화번호 입력 요망")
+            return
+        }
+        let profileImageData = phoneBookView.profileImageView.image?.jpegData(compressionQuality: 1)
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

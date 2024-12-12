@@ -22,6 +22,7 @@ class ContactManager {
         let newContact = Contact(name: name, phoneNumber: phone, profileImageData: image)
         
         contacts.append(newContact)
+        print(newContact)
         
         do {
             let encoded = try JSONEncoder().encode(contacts)
@@ -32,6 +33,17 @@ class ContactManager {
     }
     
     func fetchContacts() -> [Contact] {
+        guard let savedContactsData = UserDefaults.standard.data(forKey: userDefaultKey) else {
+            return []
+        }
         
+        do {
+            let decodedContacts = try JSONDecoder().decode([Contact].self, from: savedContactsData)
+            print(decodedContacts)
+            return decodedContacts
+        } catch {
+            print("연락처 디코딩 오류: \(error)")
+            return []
+        }
     }
 }

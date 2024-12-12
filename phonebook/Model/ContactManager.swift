@@ -45,4 +45,9 @@ class ContactManager {
             return []
         }
     }
+    
+    func fetchSortedContacts() -> [Contact] {
+        let contacts = fetchContacts()
+        return contacts.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+    }
 }

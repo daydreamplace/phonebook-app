@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
     }
     
     private func loadContacts() {
-        contacts = ContactManager.shared.fetchContacts()
+        contacts = ContactManager.shared.fetchSortedContacts()
         mainView.tableView.reloadData()
     }
     

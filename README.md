@@ -96,7 +96,7 @@
 
 | 연락처 목록 | 새 연락처 추가 | 랜덤 이미지 생성 |
 |:--------:|:--------:|:--------:|
-| <img src="https://via.placeholder.com/250" width="250"> | <img src="https://via.placeholder.com/250" width="250"> | <img src="https://via.placeholder.com/250" width="250"> |
+| <img src="https://github.com/user-attachments/assets/f762725f-9443-40cc-b671-e949f1782173" width="250"> | <img src="https://github.com/user-attachments/assets/217f5c96-1b9d-4a36-afad-04ca71fafdb3" width="250"> | <img src="https://github.com/user-attachments/assets/02590cab-18b6-4a52-938c-1c1e679231c9" width="250"> |
 
 ---
 

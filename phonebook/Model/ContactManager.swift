@@ -20,16 +20,12 @@ class ContactManager {
         
         var contacts = fetchContacts()
         let newContact = Contact(name: name, phone: phone, profileImage: profileImage)
-        print("새로운 연락처: \(newContact)")
         
         contacts.append(newContact)
-        print("업데이트된 연락처 목록: \(contacts)")
         
         do {
             let encodedData = try JSONEncoder().encode(contacts)
-            print("인코딩된 데이터: \(encodedData)")
             UserDefaults.standard.setValue(encodedData, forKey: userDefaultKey)
-            print("UserDefaults에 저장 완료")
         } catch {
             print("연락처 저장 오류: \(error)")
         }

@@ -29,9 +29,6 @@ class ContactManager {
         } catch {
             print("연락처 저장 오류: \(error)")
         }
-        
-        UserDefaults.standard.synchronize()
-            print("UserDefaults에 저장된 데이터: \(UserDefaults.standard.data(forKey: userDefaultKey))")
     }
     
     func fetchContacts() -> [Contact] {

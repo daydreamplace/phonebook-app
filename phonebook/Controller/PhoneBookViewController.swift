@@ -29,7 +29,7 @@ class PhoneBookViewController: UIViewController {
     private func setupNavigationBar() {
         title = "연락처 추가"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "저장", style: .done, target: self, action: #selector(saveButtonTapped))
+            title: "적용", style: .done, target: self, action: #selector(saveButtonTapped))
     }
     
     private func setupActions() {
@@ -38,8 +38,16 @@ class PhoneBookViewController: UIViewController {
     
     @objc
     private func saveButtonTapped() {
-        print("save!!")
-        // TODO : save function
+        guard let name = phoneBookView.nameTextView.text, !name.isEmpty,
+              let phone = phoneBookView.phoneTextView.text, !phone.isEmpty else {
+            print("이름과 전화번호를 입력해주세요.")
+            return
+        }
+        let profileImage = phoneBookView.profileImageView.image?.jpegData(compressionQuality: 0.7)
+        
+        ContactManager.shared.saveContacts(name: name, phone: phone, profileImage: profileImage)
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

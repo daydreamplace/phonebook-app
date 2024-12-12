@@ -23,8 +23,11 @@ class ContactManager {
         
         contacts.append(newContact)
         
-        if let encoded = try? JSONEncoder().encode(contacts) {
+        do {
+            let encoded = try JSONEncoder().encode(contacts)
             UserDefaults.standard.setValue(encoded, forKey: userDefaultKey)
+        } catch {
+            print("연락처 저장 오류: \(error)")
         }
     }
     

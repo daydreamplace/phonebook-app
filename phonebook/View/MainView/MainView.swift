@@ -64,4 +64,6 @@ class MainView: UIView {
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
+    
+    
 }

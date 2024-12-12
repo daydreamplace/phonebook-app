@@ -9,6 +9,6 @@ import Foundation
 
 struct Contact: Codable {
     let name: String
-    let phoneNumber: String
-    let profileImageData: Data?
+    let phone: String
+    let profileImage: Data?
 }

@@ -12,24 +12,30 @@ class ContactManager {
     
     private let userDefaultKey = "contacts"
     
-    func saveContacts(name: String, phone: String, image: Data?) {
+    func saveContacts(name: String, phone: String, profileImage: Data?) {
         guard !name.isEmpty, !phone.isEmpty else {
             print("이름 또는 전화번호가 비어있습니다.")
             return
         }
         
         var contacts = fetchContacts()
-        let newContact = Contact(name: name, phoneNumber: phone, profileImageData: image)
+        let newContact = Contact(name: name, phone: phone, profileImage: profileImage)
+        print("새로운 연락처: \(newContact)")
         
         contacts.append(newContact)
-        print(newContact)
+        print("업데이트된 연락처 목록: \(contacts)")
         
         do {
-            let encoded = try JSONEncoder().encode(contacts)
-            UserDefaults.standard.setValue(encoded, forKey: userDefaultKey)
+            let encodedData = try JSONEncoder().encode(contacts)
+            print("인코딩된 데이터: \(encodedData)")
+            UserDefaults.standard.setValue(encodedData, forKey: userDefaultKey)
+            print("UserDefaults에 저장 완료")
         } catch {
             print("연락처 저장 오류: \(error)")
         }
+        
+        UserDefaults.standard.synchronize()
+            print("UserDefaults에 저장된 데이터: \(UserDefaults.standard.data(forKey: userDefaultKey))")
     }
     
     func fetchContacts() -> [Contact] {

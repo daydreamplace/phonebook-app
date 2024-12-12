@@ -38,12 +38,14 @@ class PhoneBookViewController: UIViewController {
     
     @objc
     private func saveButtonTapped() {
-        guard let name = phoneBookView.nameTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-              let phone = phoneBookView.phoneTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            print("이름 전화번호 입력 요망")
+        guard let name = phoneBookView.nameTextView.text, !name.isEmpty,
+              let phone = phoneBookView.phoneTextView.text, !phone.isEmpty else {
+            print("이름과 전화번호를 입력해주세요.")
             return
         }
-        let profileImageData = phoneBookView.profileImageView.image?.jpegData(compressionQuality: 1)
+        let profileImage = phoneBookView.profileImageView.image?.jpegData(compressionQuality: 0.7)
+        
+        ContactManager.shared.saveContacts(name: name, phone: phone, profileImage: profileImage)
         
         navigationController?.popViewController(animated: true)
     }

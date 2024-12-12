@@ -72,8 +72,13 @@ class TableViewCell: UITableViewCell {
         }
     }
     
-    func configure(name: String, phone: String) {
+    func configure(name: String, phone: String, profileImage: Data?){
         nameLabel.text = name
         phoneLabel.text = phone
+        if let profileImage {
+            profileImageView.image = UIImage(data: profileImage)
+        } else {
+            profileImageView.image = UIImage(named: "defaultProfileImage")
+        }
     }
 }

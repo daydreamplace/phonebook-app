@@ -12,20 +12,6 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     private let mainView = MainView()
     private var contacts: [Contact] = []
-    //    private let dummyData: [(name: String, phone: String)] = [
-    //        ("eden", "010-1234-5678"),
-    //        ("brie", "010-9876-5432"),
-    //        ("eric", "010-4567-1234"),
-    //        ("emily", "010-1111-1111"),
-    //        ("eden", "010-1234-5678"),
-    //        ("brie", "010-9876-5432"),
-    //        ("eric", "010-4567-1234"),
-    //        ("emily", "010-1111-1111"),
-    //        ("eden", "010-1234-5678"),
-    //        ("brie", "010-9876-5432"),
-    //        ("eric", "010-4567-1234"),
-    //        ("emily", "010-1111-1111")
-    //    ]
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -47,7 +33,7 @@ class MainViewController: UIViewController {
     }
     
     private func loadContacts() {
-        contacts = ContactManager.shared.fetchContacts()
+        contacts = ContactManager.shared.fetchSortedContacts()
         mainView.tableView.reloadData()
     }
     
